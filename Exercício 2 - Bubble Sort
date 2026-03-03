@@ -1,0 +1,22 @@
+print("Exercício 2 - Bubble Sort ")
+print("Implemente o algoritmo Bubble Sort para ordenar uma lista de números.")
+
+#Ordenação de lista usando Bubble Sort
+
+#Lista de números deosrdenados
+lista=[64,34,25,12,11,90]
+
+#Armazena o tamanho da lista 
+n=len(lista)
+
+#Loop externo: contola o número de passadas na lista
+for i in range(n):
+    #Loop interno:percorre a lista até o penultimo número
+    for j in range(0,n-i-1):
+        #Compara o elemento atual com o proximo
+        if lista[j]>lista[j+1]:
+            #Desenpacotamento(inversão)
+            lista[j], lista[j+1]= lista[j+1],lista[j]
+
+#Exibe na tela
+print(f"Lista ordenada{lista}")
