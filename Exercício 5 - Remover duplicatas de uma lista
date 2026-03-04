@@ -1,0 +1,29 @@
+print("Exercício 5 - Remover duplicatas de uma lista ")
+print("Escreva um programa que remova elementos duplicados de uma lista mantendo a ordem original.")
+
+#Lista com valores repetidos
+
+lista_original=[1,2,2,3,4,4,5,1,6,2]
+
+#Lista sem duplicatas
+lista_sem_duplicatas=[]
+
+#Controle de loop
+i=0
+
+#Percorre a lista usando indice 
+while i<len(lista_original):
+    #Pega o elemento atual da lista original
+    elemento=lista_original[i]
+
+    #Verifica se o elemento não existe na lista sem duplicatas
+    if elemento not in lista_sem_duplicatas:
+        #Se não tiver adiciona na lista sem duplicatas
+        lista_sem_duplicatas.append(elemento)
+
+    #Incremento do contador 
+    i+=1
+
+#Exibe as listas 
+print(f"Lista original: {lista_original}")
+print(f"Lista sem duplicatas: {lista_sem_duplicatas}")
