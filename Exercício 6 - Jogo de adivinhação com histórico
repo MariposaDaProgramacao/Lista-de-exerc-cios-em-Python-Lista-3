@@ -1,0 +1,50 @@
+print("Exercício 6 - Jogo de adivinhação com histórico ")
+print("Desenvolva um jogo onde o computador sorteia um número e o usuário tenta adivinhar, mostrando um histórico das tentativas. ")
+
+
+import random #Biblioteca geradora de números aleatórios
+
+#Sorteia um número aleatório
+numero_secreto = random.randint(1,10)
+
+#Lista que armazena os palpites
+tentativas=[]
+
+#Contador de tentativas
+tentativa_atual=0
+
+print("....JOGO DE ADIVINHAÇÃO DE NÚMEROS....")
+print("Teste as suas capacidades mentais, e tente adivinhar o número entre 1 é 10!")
+
+#loop principal do jogo 
+while True:
+    try:
+        #Lê o palpite do usuário
+        palpite=int(input("Tente a sorte, digite um número:"))
+
+        #Atualiza as tentativas
+        tentativa_atual+=1
+        tentativas.append(palpite)
+
+        #Verifica se o palpite está correto 
+        if palpite==numero_secreto:
+            print(f"PARABÉNS! O SEU CELEBRO FUNCIONA! Vc acertou em {tentativa_atual} tentativas!")
+            break #Sai do loop e encerra o jogo ao acertar
+
+        #Caso o palpite seja menor
+        elif palpite<numero_secreto:
+            print("Humm. Voçe não acertou, coloque a cabecinha para funcionar e tente mais uma vez. E aqui vai uma dica: (Tente um número MAIOR!)")
+
+        #Caso o palpite seja maior
+        else:
+            print("Gaste mais alguns neuronios! Mas aqui vai uma dica:(Tente um número menor!)")
+
+        print(f"Suas tentativas foram: {tentativas}")
+
+    #Caso o usuario digite algo que não seja um número inteiro
+    except ValueError:
+        print("Por favor insira um número que seja válido!")
+
+print(f"O número escondido era: {numero_secreto}")
+print(f"Essas foram as suas tentativas: {tentativa_atual}")
+print(f"Esses aqui foram os seus palpites sobre o número sercreto: {tentativas}")
