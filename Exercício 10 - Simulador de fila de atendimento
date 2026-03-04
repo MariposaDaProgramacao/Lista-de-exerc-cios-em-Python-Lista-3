@@ -1,0 +1,74 @@
+print("Exercício 10 - Simulador de fila de atendimento")
+print("Crie um simulador de fila de atendimento onde clientes entram na fila e são atendidos um por um.")
+
+
+import time
+
+# Simulador de fila usando WHILE
+fila = []
+atendidos = []
+numero_atendimento = 1
+
+print("=== SIMULADOR DE FILA DE ATENDIMENTO ===")
+print("Comandos: chegar, atender, status, sair")
+
+while True:
+    comando = input("\nDigite um comando: ").lower()
+    
+    if comando == "sair":
+        print("Encerrando simulador...")
+        break
+        
+    elif comando == "chegar":
+        nome = input("Digite o nome do cliente: ")
+        if nome:
+            fila.append(nome)
+            print(f"'{nome}' entrou na fila. Posição: {len(fila)}")
+        else:
+            print("Nome não pode estar vazio!")
+            
+    elif comando == "atender":
+        if fila:
+            cliente_atual = fila.pop(0)
+            print(f"Atendendo: {cliente_atual} (Atendimento #{numero_atendimento})")
+            
+            # Simulação de tempo de atendimento
+            print("Atendendo", end="")
+            for _ in range(3):
+                time.sleep(0.5)
+                print(".", end="", flush=True)
+            print()
+            
+            atendidos.append(cliente_atual)
+            numero_atendimento += 1
+            print(f"✅ {cliente_atual} foi atendido!")
+            
+            if fila:
+                print(f"Próximo da fila: {fila[0]}")
+            else:
+                print("Fila vazia!")
+        else:
+            print("Não há clientes na fila!")
+            
+    elif comando == "status":
+        print("\n=== STATUS DA FILA ===")
+        print(f"Em atendimento: {numero_atendimento - 1} atendimentos realizados")
+        print(f"Fila atual: {len(fila)} cliente(s) aguardando")
+        
+        if fila:
+            print("\nClientes na fila:")
+            for posicao, cliente in enumerate(fila, 1):
+                print(f"{posicao}º: {cliente}")
+        else:
+            print("\nFila vazia!")
+            
+        if atendidos:
+            print(f"\nÚltimos 5 atendidos: {atendidos[-5:]}")
+            
+    else:
+        print("Comando inválido! Use: chegar, atender, status ou sair")
+
+print(f"\nRelatório final:")
+print(f"Total atendidos: {len(atendidos)}")
+print(f"Clientes atendidos: {atendidos}")
+print(f"Clientes na fila não atendidos: {fila}")
