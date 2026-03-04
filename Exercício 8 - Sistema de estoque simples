@@ -1,0 +1,118 @@
+print("Exercício 8 - Sistema de estoque simples")
+print("Implemente um sistema de controle de estoque que permita adicionar, remover e listar produtos usando while.")
+
+
+estoque={} #Estoque principal 
+
+print("...SISTEMA DE ESTOQUE...")
+print("Commandos: add, rem , ajust, list, search, exit")
+
+#Loop principal até o usuário digitar "exit"
+while True:
+    comando=input("Digite o comando para iniciarmos: ").lower() #Minúsculo
+
+    #Encerra o programa
+    if comando=="exit":
+        print("Encerrando o programa")
+        break
+
+    #COMANDO PARA ADICIONAR PRODUTOS NO ESTOQUE
+    elif comando=="add":
+        produto=(input("Informe o nome do produto:")).strip().lower() #Remove espaços extras
+
+        if produto:
+            #Caso o produto já exista no estoque
+            if  produto in estoque:
+                print(f"Produto '{produto}' já está listado no estoque!")
+                opcao=(input("Deseja adicionar mais unidades?(s,n)")).lower()
+                if opcao=="s":
+                    try:
+                        quantidade=int(input("Quantidade do produto a ser adicionado no sistema:"))
+                        if quantidade>0:
+                            estoque[produto]+=quantidade #Adiciona quantidade ao produto
+                            print(f"'{produto}' recebeu o total de '{quantidade}' unidades!")
+                        else:
+                            print("Quantidade não pode ser negativa!")
+                    except ValueError:
+                        print("Quantidade inválida!")
+            #Caso o produto não exista no estoque
+            else:
+                try:
+                    quantidade=int(input("Digite a quantidade inicial do produto:"))
+                    if quantidade>0:
+                        estoque[produto]=quantidade
+                        print(f"'{produto}' adicionado com '{quantidade}' unidades.")
+                    else:
+                        print("Quantidade inserida do produto náo pode ser negativa ou igual a 0!")
+                except ValueError:
+                    print("Quantidade inválida!")
+        else:
+            print("Nome de produto inválido!")
+
+
+#REMOÇAO DE PRODUTOS
+    elif comando=="rem":
+        if not estoque: #Verifica se o estoque está vazio
+            print("O estoque tém um total de 0 produtos cadastrados! ")
+        else:
+            produto=input("Digite o nome do produto:").strip().lower
+            if produto in estoque:
+                del estoque[produto] #Remove o produto do dicionário
+                print(f"Produto '{produto}' removido!")
+            else:
+                print(f"Produto '{produto}' não listado no sistema")
+
+
+#AJUSTE MANUAL DE QUANTIDADES
+    elif comando=="ajust":
+        if not estoque:
+            print("Nenhum item foi encontrado no sistema.")
+        else:
+            produto=input("Insira o nome do produto que deve ser alterado:")
+            if produto in estoque:
+                try:
+                    nova_quantidade=int(input(f"Nova quantidade para '{produto}':"))
+                    if nova_quantidade>0:
+                        estoque[produto]=nova_quantidade #Subistitui a quantidade anterior
+                        print(f"Quantidade de '{produto}' ajustado para '{quantidade}'.")
+                    else:
+                        print("A quantidade deve ser maior que 0.")
+                except ValueError:
+                    print("Quantidade inserida é inválida!")
+            else:
+                print("O produto não foi encontrado.")
+
+#EXIBIR TODOS OS PRODUTOS E QUANTIDADES EM ESTOQUE
+    elif comando=="list":
+        if not estoque:
+            print("Nenhum item encontrado no sistema!")
+        else:
+            print("...ESTOQUE ATUAL...")
+            print("="*40)
+            print(f"{'Produto':<20} {'Quantidade':<12} {'Status':<10}") #Cabeçalho
+            print("-"*40)
+            #Exibe os itens ordenados em ordem alfabetica
+            for produto,quantidade in sorted(estoque.items()):
+                status="BAIXO"  if quantidade <5 else "OK" #Classificação simples
+                print(f"{produto:<20} {quantidade:<12} {status:<10}")
+            print("="*40)
+            print(f"O total de produtos listados é {len(estoque)}")
+            print(f"O total de unidades no estoque é: {sum(estoque.values())}")
+
+#BUSCA PRODUTOS PELO NOME OU PARTE DO NOME
+    elif comando=="search":
+        if not estoque:
+            print("Nenhum item no sistema!")
+        else:
+            termo=input("Buscar item no estoque:").strip().lower() #Termo pesquisado
+            #Cria um dicionario que contem os resultados relacionados ao termo
+            resultados={p:q for p, q in estoque.items() if termo in p.lower()}
+            if resultados:
+                print(f"{len(resultados)} Resultado(s):")
+                for produto, quantidade in resultados.items():
+                    print(f"{produto}:{quantidade} unidadesS")
+            else:
+                print("Nenhum produto foi encontrado!")
+    
+    else:
+        print("Comando desconhecido!")
