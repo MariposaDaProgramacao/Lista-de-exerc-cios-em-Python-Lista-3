@@ -1,0 +1,87 @@
+print("Exercício 9 - Análise de lista de números")
+print("Faça um programa que analise uma lista de números e retorne: maior, menor, média, soma e quantidade de positivos/negativos. ")
+
+
+# Lista de exemplo
+numeros = [12, -5, 8, -3, 0, 15, -8, 7, 0, -1, 10]
+
+# Usando FOR para análise
+maior = numeros[0]
+menor = numeros[0]
+soma = 0
+positivos = 0
+negativos = 0
+zeros = 0
+
+for numero in numeros:
+    # Maior e menor
+    if numero > maior:
+        maior = numero
+    if numero < menor:
+        menor = numero
+    
+    # Soma
+    soma += numero
+    
+    # Contagem
+    if numero > 0:
+        positivos += 1
+    elif numero < 0:
+        negativos += 1
+    else:
+        zeros += 1
+
+media = soma / len(numeros)
+
+print("Lista analisada:", numeros)
+print(f"Maior número: {maior}")
+print(f"Menor número: {menor}")
+print(f"Soma total: {soma}")
+print(f"Média: {media:.2f}")
+print(f"Positivos: {positivos}")
+print(f"Negativos: {negativos}")
+print(f"Zeros: {zeros}")
+
+# Método alternativo com WHILE
+print("\n" + "="*40)
+print("Análise com WHILE:")
+
+maior = numeros[0]
+menor = numeros[0]
+soma = 0
+positivos = 0
+negativos = 0
+zeros = 0
+i = 0
+
+while i < len(numeros):
+    numero = numeros[i]
+    
+    # Maior e menor
+    if numero > maior:
+        maior = numero
+    if numero < menor:
+        menor = numero
+    
+    # Soma
+    soma += numero
+    
+    # Contagem
+    if numero > 0:
+        positivos += 1
+    elif numero < 0:
+        negativos += 1
+    else:
+        zeros += 1
+    
+    i += 1
+
+media = soma / len(numeros)
+
+print(f"Maior número: {maior}")
+print(f"Menor número: {menor}")
+print(f"Soma total: {soma}")
+print(f"Média: {media:.2f}")
+print(f"Positivos: {positivos}")
+print(f"Negativos: {negativos}")
+print(f"Zeros: {zeros}")
