@@ -1,0 +1,36 @@
+print("Exercício 3 - Busca binária")
+print("Desenvolva uma função que implemente o algoritmo de busca binária em uma lista ordenada.")
+
+def busca_binaria(lista,elemento):
+    #Define o inicio e o fim da lista
+    inicio=0
+    fim=len(lista)
+
+    #Enquanto ainda houver intervalo para a busca
+    while inicio<=fim:
+        meio=(inicio+fim)//2
+
+        #Verifica se o elemento procurado é o do meio
+        if lista[meio]==elemento:
+            return meio
+        
+        #Se o elemento for menor que o meio, vai para a direita
+        elif lista[meio]<elemento:
+            inicio=meio+1
+        #Caso contrario, vai para a esquerda
+        else:
+            fim=meio-1
+    #Se sair do loop o elemento não esta na lista
+    return -1 
+
+#Função main
+lista_ordenada=[2,5,8,12,16,33,38,45]
+elemento_procurado=38
+
+#Chama a função e guarda o resultado 
+resultado=busca_binaria(lista_ordenada,elemento_procurado)
+
+if resultado!=-1:
+    print(f"Elemento {elemento_procurado} na posição: {resultado}.")
+else:
+    print(f"Elemento {elemento_procurado} não encontrado!")
