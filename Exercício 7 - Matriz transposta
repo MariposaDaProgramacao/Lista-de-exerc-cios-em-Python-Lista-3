@@ -1,0 +1,41 @@
+print("Exercício 7 - Matriz transposta")
+print("Crie um programa que calcule a transposta de uma matriz usando laços aninhados.")
+
+
+matriz_original=[
+    [1,2,3,4],
+    [5,6,7,8],
+    [9,10,11,12]
+]
+
+#Exibe na tela a matriz original
+print("Matriz original")
+for linha in matriz_original:
+    print(linha)
+
+#Loop para transpor a matriz
+matriz_trasnposta=[] #Matriz_trasnposta começa vazia
+
+j=0 #O J percorre as colunas da matriz
+
+#Loop externo
+while j <len(matriz_original[0]):
+    nova_linha=[] #Nova linha inicialmente vazia
+    i=0 #Percorre as linhas da matriz
+
+    #Loop interno
+    while i<len(matriz_original):
+        #Adiciona o elemento linha i, coluna j á nova linha
+        nova_linha.append(matriz_original[i][j])
+        i+=1 #Avança para a proxima linha
+
+    #Adiciona a linha contruída á matriz trasnposta
+    matriz_trasnposta.append(nova_linha)
+    j+=1 #Avança para a proxima coluna
+
+#Exibe a matriz_transposta
+print(f"Matriz transposta")
+for linha in matriz_trasnposta:
+    print(linha)
+
+
