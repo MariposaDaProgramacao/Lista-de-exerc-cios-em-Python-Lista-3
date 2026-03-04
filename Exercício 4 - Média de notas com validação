@@ -1,0 +1,22 @@
+print("Exercício 4 - Média de notas com validação")
+print("Crie um programa que peça ao usuário para inserir 5 notas (0 a 10) e calcule a média, validando cada entrada. ")
+
+
+notas=[]
+i=0
+
+#Laço de repetição principal
+while (i<5):
+    try:
+        nota=float(input(f"Digite a {i+1} nota: "))
+        if 0<=nota<=10:
+            notas.append(nota)
+            i+=1
+        else:
+            print("Nota inválida!")
+    except ValueError:
+        print("Digite um número válido!")
+
+media=sum(notas)/len(notas)
+print(f" Notas digitadas: {notas}")
+print(f"Média: {media:.2f}")
